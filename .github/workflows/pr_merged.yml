@@ -1,0 +1,54 @@
+name: PR merged
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+
+  pr-merged:
+    name: "PR merged"
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+    steps:
+      - name: Debug Github reference
+        if: github.event.pull_request.merged == true
+        run: echo PR ${GITHUB_REF}
+
+      - name: Checkout Repo
+        if: github.event.pull_request.merged == true
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        if: github.event.pull_request.merged == true
+        uses: actions/setup-go@v1.1.2
+        with:
+            go-version: '1.13.4'
+
+      - name: JIRA Transition
+        if: github.event.pull_request.merged == true
+        run: pwd && cd backend && go mod vendor && go run ./cmd/githubactions/githubactions.go jira-transition
+        env:
+          JIRA_TRANSITION: "Merged"
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER: ${{ secrets.JIRA_USER }}
+          JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_PR: ${{ github.event.pull_request.number }}
+          GO111MODULE: on
+
+      - name: JIRA Version
+        if: github.event.pull_request.merged == true
+        run: pwd && cd backend && go mod vendor && go run ./cmd/githubactions/githubactions.go jira-version
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+          JIRA_PROJECT_KEY: "TEST"
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER: ${{ secrets.JIRA_USER }}
+          JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_PR: ${{ github.event.pull_request.number }}
+          GO111MODULE: on
