@@ -1,0 +1,14 @@
+name: Release Published
+
+on:
+  release:
+    types: [published]
+
+jobs:
+
+  release:
+    name: "Release Published"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug Github reference
+        run: echo PR ${GITHUB_REF}
