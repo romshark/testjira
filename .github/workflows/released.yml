@@ -12,3 +12,5 @@ jobs:
     steps:
       - name: Debug Github reference
         run: echo PR ${GITHUB_REF}
+      - name: Debug PR number
+        run: echo ${{ github.event.pull_request.number }}
