@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: call CI bot
-        run: curl -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} 'http://c267c6c70a77.ngrok.io/github/pr/${{ github.event.pull_request.number }}/opened'
+        run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/pr/${{ github.event.pull_request.number }}/opened'
