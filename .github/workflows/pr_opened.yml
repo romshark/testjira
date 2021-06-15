@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: call CI bot
-        run: curl -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/pr/${{ github.event.pull_request.number }}/opened'
+        run: curl -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} 'http://[2a02:8071:b59a:2b00::b897]:8082/github/pr/${{ github.event.pull_request.number }}/opened'
