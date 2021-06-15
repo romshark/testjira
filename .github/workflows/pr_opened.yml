@@ -10,6 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: curl
-        uses: wei/curl@v1
         with:
-          args: -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} ${{ secrets.CI_BOT_URL }}/github/pr/${{ github.event.pull_request.number }}/opened
+          args: -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/pr/${{ github.event.pull_request.number }}/opened'
