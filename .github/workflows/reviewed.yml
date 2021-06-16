@@ -1,0 +1,13 @@
+name: PR reviewed
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  pr-merged:
+    name: "PR reviewed"
+    runs-on: ubuntu-latest
+    steps:
+      - name: call CI bot
+        run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/pr/${{ github.event.pull_request.number }}/reviewed'
