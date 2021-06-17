@@ -14,3 +14,5 @@ jobs:
         run: echo PR ${GITHUB_REF}
       - name: Debug PR number
         run: echo ${{ github.event.pull_request.number }}
+      - name: Debug Release Tag Name 
+        run: echo ${{ github.event.release.tag_name }}
