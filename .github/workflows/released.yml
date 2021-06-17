@@ -5,14 +5,10 @@ on:
     types: [published]
 
 jobs:
-
-  release:
-    name: "Release Published"
+  release-published:
+    name: "Release published"
     runs-on: ubuntu-latest
-    steps:
-      - name: Debug Github reference
-        run: echo PR ${GITHUB_REF}
-      - name: Debug PR number
-        run: echo ${{ github.event.pull_request.number }}
-      - name: Debug Release Tag Name 
-        run: echo ${{ github.event.release.tag_name }}
+    steps: 
+      - name: curl
+        run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/release/${{ github.event.release.tag_name }}'
+
