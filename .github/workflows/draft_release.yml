@@ -1,0 +1,14 @@
+name: Draft Release
+
+on:
+  create:
+    tags:
+      - '*.*'
+
+jobs:
+  draft-release:
+    name: "Draft release"
+    runs-on: ubuntu-latest
+    steps: 
+      - name: curl
+        run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/release-draft/${{ github.event.release.tag_name }}'
