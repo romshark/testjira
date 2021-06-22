@@ -14,8 +14,6 @@ jobs:
         run: echo ${{ github.event.tag_name }}
       - name: debug 2
         run: echo ${{ github.event.release.tag_name }}
-      - name: debug 3
-        run: echo parseJSON(${{ github.event }})
       - name: debug 4
         run: echo tag::${GITHUB_REF:10}
       - name: debug 5
