@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Define tag name
         id: vars
-        run: echo '::set-output name=TAG_NAME::${{GITHUB_REF:10}}'
+        run: echo '::set-output name=TAG_NAME::${{ GITHUB_REF:10 }}'
       - name: curl
         run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/draft-release/${{ steps.vars.outputs.TAG_NAME }}'
