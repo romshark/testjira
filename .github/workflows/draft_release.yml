@@ -9,6 +9,12 @@ jobs:
   draft-release:
     name: "Draft release"
     runs-on: ubuntu-latest
-    steps: 
+    steps:
+      - name: debug
+        run: echo ${{ github.event.tag_name }}
+      - name: debug 2
+        run: echo ${{ github.event.release.tag_name }}
+      - name: debug 3
+        run: echo ${{ github.event }}
       - name: curl
         run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/release-draft/${{ github.event.tag_name }}'
