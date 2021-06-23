@@ -2,7 +2,7 @@ name: Release Published
 
 on:
   release:
-    types: [published, updated]
+    types: [published]
 
 jobs:
   release-published:
