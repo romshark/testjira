@@ -1,13 +1,14 @@
 name: Tag Created
 
 on:
-  create
+  create:
+    tags:
+      - '[0-9]{6}.[0-9]{2}'
 
 jobs:
   tag-created:
     name: "Tag Created"
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.ref, 'refs/tags') }}
     steps:
       - name: Define tag name
         id: vars
