@@ -9,12 +9,9 @@ jobs:
   tag-created:
     name: "Tag Created"
     runs-on: ubuntu-latest
-#    if: ${{ startsWith(github.ref, 'refs/tags/') }}
     steps:
       - name: Define tag name
         id: vars
         run: echo "::set-output name=TAG_NAME::${GITHUB_REF:10}"
-      - name: Debug
-        run: echo ${{ steps.vars.outputs.TAG_NAME }}
-#      - name: curl
-#        run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/tag-created/${{ steps.vars.outputs.TAG_NAME }}'
+      - name: curl
+        run: curl --fail -X POST -u ${{ secrets.CI_BOT_USERNAME }}:${{ secrets.CI_BOT_PASSWORD }} '${{ secrets.CI_BOT_URL }}/github/tag-created/${{ steps.vars.outputs.TAG_NAME }}'
