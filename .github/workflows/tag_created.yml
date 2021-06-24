@@ -3,7 +3,7 @@ name: Tag Created
 on:
   push:
     tags:
-      - '*.*'
+      - '[0-9]{6}.[0-9]'
 
 jobs:
   tag-created:
