@@ -1,7 +1,7 @@
 name: Tag Created
 
 on:
-  push:
+  create:
     tags:
       - '[0-9]{6}.[0-9]'
 
