@@ -6,9 +6,10 @@ on:
       - '*.*'
 
 jobs:
-  draft-release:
+  tag-created:
     name: "Tag Created"
     runs-on: ubuntu-latest
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
     steps:
       - name: Define tag name
         id: vars
