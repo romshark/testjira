@@ -5,7 +5,7 @@ on:
     types: [opened, reopened]
 
 jobs:
-  pr-merged:
+  pr-opened:
     name: "PR opened"
     runs-on: ubuntu-latest
     steps:
