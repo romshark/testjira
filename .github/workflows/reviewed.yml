@@ -5,7 +5,7 @@ on:
     types: [submitted]
 
 jobs:
-  pr-merged:
+  pr-reviewed:
     name: "PR reviewed"
     runs-on: ubuntu-latest
     steps:
